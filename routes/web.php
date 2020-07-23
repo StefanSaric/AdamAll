@@ -13,7 +13,7 @@
 
 Auth::routes(['register' => false]);
 
-Route::get('/', function () {
+Route::get('admin/login', function () {
     return view('login');
 });
 
@@ -47,5 +47,5 @@ Route::group(['prefix' => 'admin'], function () {Route::get('/',function(){
 //        return view('site.index');
 //    });
 //});
-Route::get('/site', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 Route::post('/storesite', 'Admin\RegistrationController@storesite');

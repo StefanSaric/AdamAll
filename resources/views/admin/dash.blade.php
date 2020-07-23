@@ -37,7 +37,7 @@
                 </div>
                 <div class="box-body">
                     <ul>
-                        <li><a href="{{ url('\site') }}"> Adamall</a></li>
+                        <li><a href="{{ url('/') }}"> Adamall</a></li>
                     </ul>
                 </div>
             </div>
