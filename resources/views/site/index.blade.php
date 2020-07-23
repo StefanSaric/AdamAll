@@ -232,7 +232,7 @@
                                     <div>
                                         <hr class="post-horizontal-rule">
                                         <br>
-                                        <h5>Potpisnik: {{$post->signature}}</h5>
+                                        <h5>Autor: {{$post->signature}}</h5>
                                     </div>
                                     {{--                        <div class="post-footer">--}}
                                     {{--                            <div class="row">--}}

@@ -89,11 +89,11 @@
     </div>
     <div class = "form-group">
         <div class="col-md-2">
-            <label class="control-label">Potpisnik teksta:</label>
+            <label class="control-label">Autor teksta:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($post)) <input type="text" name="signature" id = "signature" class="form-control" placeholder="potpisnik" value="{{ $post->signature }}" required></input>
-            @else <input type="text" name="signature" id ="signature" class="form-control form-validate" placeholder="potpisnik" required></input>
+            @if(isset($post)) <input type="text" name="signature" id = "signature" class="form-control" placeholder="Autor" value="{{ $post->signature }}" required></input>
+            @else <input type="text" name="signature" id ="signature" class="form-control form-validate" placeholder="Autor" required></input>
             @endif
         </div>
     </div>

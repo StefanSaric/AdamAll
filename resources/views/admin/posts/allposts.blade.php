@@ -41,7 +41,7 @@
                                     <th>Link</th>
                                     <th>Tip</th>
                                     <th>Kategorija</th>
-                                    <th>Potpis</th>
+                                    <th>Autor</th>
                                     <th style="min-width: 85px">Action</th>
                                 </tr>
                                 </thead>
