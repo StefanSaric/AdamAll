@@ -36,11 +36,10 @@
                                 <thead>
                                 <tr>
                                     <th>&nbsp;&nbsp;&nbsp;#</th>
-                                    <th>Title slike</th>
+                                    <th>Slika</th>
                                     <th>Link slike</th>
                                     <th>Tekst</th>
                                     <th>Link</th>
-                                    <th>Tip linka</th>
                                     <th>Tekst linka</th>
                                     <th style="min-width: 85px">Action</th>
                                 </tr>
@@ -49,11 +48,10 @@
                                 @foreach($ads as $num => $ad)
                                     <tr id="{{ $ad->id }}" class="gradeX">
                                         <td>&nbsp;&nbsp;&nbsp;{{ $num + 1 }}</td>
-                                        <td>{{ $ad->image_title }}</td>
+                                        <td><img src="{{asset($ad->image)}}" height="150" width="150"></td>
                                         <td>{{ $ad->image_link }}</td>
                                         <td>{{ $ad->text }}</td>
                                         <td>{{ $ad->link}}</td>
-                                        <td>{{ $ad->link_type}}</td>
                                         <td>{{ $ad->link_text }}</td>
                                         <td>
                                             <a href="{{ url('admin\ads\\'.$ad->id.'\edit') }}" class="btn btn-xs btn-success editAd" data-toggle="tooltip" data-placement="top" data-original-title="Uredi Oglas"><i class="fa fa-pencil"></i></a>

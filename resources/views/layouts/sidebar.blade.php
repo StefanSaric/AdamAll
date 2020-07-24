@@ -37,7 +37,7 @@
                 </a>
                 <!--start submenu -->
                 <ul>
-                    <li><a href="{{ url('admin\users') }}" >Allusers</a></li>
+                    <li><a href="{{ url('admin\users') }}" >All Users</a></li>
                     <li><a href="{{ url('admin\users\create')}}" >Create User</a></li>
                 </ul><!--end /submenu -->
             </li><!--end /menu-item -->
@@ -48,7 +48,7 @@
                     <i class="fa fa-sort fa-fw"></i><span class="title">Roles</span> <span class="expand-sign">+</span>
                 </a>
                 <ul>
-                    <li><a href="{{ url('admin\roles') }}" >AllRoles</a></li>
+                    <li><a href="{{ url('admin\roles') }}" >All Roles</a></li>
                     <li><a href="{{ url('admin\roles\create')}}" >Create Role</a></li>
                 </ul>
             </li>

@@ -40,6 +40,7 @@
                                     <th>Izvor</th>
                                     <th>Link</th>
                                     <th>Tip</th>
+                                    <th>Slika</th>
                                     <th>Kategorija</th>
                                     <th>Autor</th>
                                     <th style="min-width: 85px">Action</th>
@@ -53,6 +54,11 @@
                                         <td>{{ $one_post->source }}</td>
                                         <td>{{ $one_post->link }}</td>
                                         <td>{{ $one_post->type->name}}</td>
+                                        @if($one_post->category->name == 'Vest' && $one_post->type->name <> 'Video')
+                                            <td><img src="{{asset($one_post->materials->first()->url)}}" height="150" width="150"></td>
+                                        @else
+                                            <td><img src="{{asset("images/posts/default/default.png")}}" height="150" width="150"></td>
+                                        @endif
                                         <td>{{ $one_post->category->name}}</td>
                                         <td>{{ $one_post->signature }}</td>
                                         <td>

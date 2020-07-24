@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::with('type','category')->where('show', '=', 1)->orderBy('date','desc')->get();
+        $posts = Post::with('type','category','materials')->where('show', '=', 1)->orderBy('date','desc')->get();
 
         return view('admin.posts.allposts', ['active' => 'allposts', 'posts' => $posts]);
     }

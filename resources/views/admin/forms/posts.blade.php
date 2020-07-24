@@ -74,7 +74,7 @@
         </div>
         <div class="col-md-10">
             <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
-            <input type="file" name="video" id="uploadVideoFiles" class="uploadVideoFiles" accept="video/jpeg2000, video/mp4" multiple  />
+            <input type="file" name="video" id="uploadVideoFiles" class="uploadVideoFiles" style="<?php if(!isset($post) || $post->type->id != 4) { echo "display:none;"; } ?> " accept="video/jpeg2000, video/mp4" multiple  />
         </div>
     </div>
     <div class = "form-group">

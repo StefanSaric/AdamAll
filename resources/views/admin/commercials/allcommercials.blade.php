@@ -48,7 +48,7 @@
                                 @foreach($commercials as $num => $commercial)
                                     <tr id="{{ $commercial->id }}" class="gradeX">
                                         <td>&nbsp;&nbsp;&nbsp;{{ $num + 1 }}</td>
-                                        <td>{{ $commercial->image }}</td>
+                                        <td><img src="{{asset($commercial->image)}}" height="150" width="150"></td>
                                         <td>{{ $commercial->image_tag}}</td>
                                         <td>{{ $commercial->title }}</td>
                                         <td>{{ $commercial->link}}</td>

@@ -47,7 +47,7 @@
                                 @foreach($news as $num => $one_news)
                                     <tr id="{{ $one_news->id }}" class="gradeX">
                                         <td>{{ $num + 1 }}</td>
-                                        <td>{{ $one_news->image}}</td>
+                                        <td><img src="{{asset($one_news->image)}}" height="150" width="150"></td>
                                         <td>{{ $one_news->title }}</td>
                                         <td>{{ $one_news->text }}</td>
                                         <td>{{ $one_news->post_link}}</td>
