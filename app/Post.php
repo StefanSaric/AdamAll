@@ -24,6 +24,6 @@ class Post extends Model
 
     public function materials()
     {
-        return $this->hasMany('App\Materials', 'post_id', 'id');
+        return $this->hasMany('App\Materials', 'post_id', 'id')->orderBy('ordernumber', 'asc');
     }
 }

@@ -12,6 +12,25 @@
         <div class="col-md-10">
             <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
         </div>
+        @if(isset($ad))
+            <div class="form-group">
+                <div class="col-md-2" id="imagediv_{{$ad->id}}">
+                    <div class="box-head">
+                        <header>
+                        </header>
+                        <div class="tools">
+                            <div class="btn-group btn-group-transparent">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-equal btn-sm removeImageDiv" id="remove_{{$ad->id}}"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="thumbnail" src="{{asset($ad->image)}}" style="background-color: #f7f7f7; width:100%">
+                </div>
+            </div>
+            <input type="hidden" id="removeimage" name="removeimage" value="false">
+        @endif
     </div>
     <div class = "form-group">
         <div class="col-md-2">

@@ -1,7 +1,6 @@
 @extends('admin.dash')
 
 @section('pageCss')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/libs/select2/select2.css')}}"/>
 @stop
 
 @section('content')
@@ -39,9 +38,8 @@
 
 
 @section('pageScripts')
-    <script src="{{ asset('/assets/js/datatable.js') }}"></script>
     <script src="{{ asset('assets/js/libs/jquery-validation/dist/jquery.validate.js') }}"></script>
     <script src="{{ asset('assets/js/libs/jquery-validation/dist/additional-methods.js') }}"></script>
-    <script src="{{ asset('assets/js/multiple-images.js') }}"></script>
+    <script src="{{ asset('assets/js/admin/ads.image.js') }}"></script>
 @stop
 

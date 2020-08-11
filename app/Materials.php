@@ -12,7 +12,7 @@ class Materials extends Model
      * @var array
      */
     protected $fillable = [
-        'post_id','url'
+        'post_id','url', 'ordernumber'
     ];
 
     public $timestamps = true;

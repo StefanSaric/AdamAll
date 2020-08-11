@@ -67,9 +67,8 @@ class AdsController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $validator = Validator::make($request->all(), [
-            'image' => 'required | dimensions:min_width=500,max_width=500,min_height=500,max_height=500'
+            'image' => 'dimensions:width=500,max_width=500,min_height=500,max_height=500'
         ]);
         if ($validator->fails()) {
             $validator->errors()->add('field', 'Slika nije odgovarajuceg formata!');
@@ -94,13 +93,20 @@ class AdsController extends Controller
                 $ad->image = $image;
                 $ad->save();
             }
-
-
-            Session::flash('message', 'success_Oglas je uređen!');
-
-            return redirect('admin/ads');
-
         }
+
+        if ($request->get('removeimage') != null) {
+            $removeimage = $request->get('removeimage');
+            if ($removeimage == "true") {
+                $ad->update([
+                    'image' => null
+                ]);
+            }
+        }
+        Session::flash('message', 'success_Oglas je uređen!');
+
+        return redirect('admin/ads');
+
     }
 
     public function delete($id)

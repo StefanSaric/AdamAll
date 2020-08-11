@@ -122,13 +122,13 @@
                         <h3>{{$ad->text}}</h3>
                         @if($ad->link_type == 'instagram')
 
-                             <a href="{{$ad->link}}" target="_blank" title="{{$ad->link_title}}" ><i class="fa fa-instagram"></i><span>{{$ad->link_text}}</span></a>
+                             <a href="{{$ad->link}}" target="_blank" title="{{$ad->link_title}}" ><i class="fa fa-instagram"></i><span> {{$ad->link_text}}</span></a>
                         @elseif($ad->link_type == 'website')
 
-                            <a href="{{$ad->link}}" target="_blank" title="{{$ad->link_title}}" ><i class="fa fa-desktop"></i><span>{{$ad->link_text}}</span></a>
+                            <a href="{{$ad->link}}" target="_blank" title="{{$ad->link_title}}" ><i class="fa fa-desktop"></i><span> {{$ad->link_text}}</span></a>
                         @elseif($ad->link_type == 'playstore')
 
-                            <a href="{{$ad->link}}" target="_blank" title="{{$ad->link_title}}" ><i class="fa fa-play"></i><span>{{$ad->link_text}}</span></a>
+                            <a href="{{$ad->link}}" target="_blank" title="{{$ad->link_title}}" ><i class="fa fa-play"></i><span> {{$ad->link_text}}</span></a>
                         @endif
 
                         </div>
@@ -349,7 +349,7 @@
                     <div class="widget-sub-s">
                         <form method="post" action={{ url('/storesite') }} class="sign_up_form">
                             {!! csrf_field() !!}
-                            <input type="email" id="email" name="email" placeholder="email" value="email"required="required" />
+                            <input type="email" id="email" name="email" placeholder="Upišite Vaš email" required="required" />
                             <input type="submit" value="prijava" id="submit-button" class="button color-y" />
                         </form>
                     </div>

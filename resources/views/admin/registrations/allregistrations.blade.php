@@ -67,7 +67,6 @@
 @stop
 
 @section('pageScripts')
-    <script src="{{ asset('/assets/js/datatable.js') }}"></script>
-    <script src="{{ asset('/assets/js/news.js') }}"></script>
+    <script src="{{ asset('/assets/js/libs/DataTables/jquery.dataTables.js') }}"></script>
 
 @stop

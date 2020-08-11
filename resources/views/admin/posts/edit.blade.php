@@ -1,9 +1,10 @@
 @extends('admin.dash')
 
 @section('pageCss')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/libs/select2/select2.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/theme-default/libs/wysihtml5/wysihtml5.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/theme-default/libs/wysihtml5/bootstrap-wysihtml5.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery-ui.css')}}"/>
+
 @stop
 
 @section('content')
@@ -41,17 +42,17 @@
 
 
 @section('pageScripts')
-    <script src="{{ asset('/assets/js/datatable.js') }}"></script>
     <script src="{{ asset('assets/js/libs/jquery-validation/dist/jquery.validate.js') }}"></script>
     <script src="{{ asset('assets/js/libs/jquery-validation/dist/additional-methods.js') }}"></script>
-    <script src="{{ asset('assets/js/admin/posts.js') }}"></script>
-    <script src="{{ asset('assets/js/admin/images.js') }}"></script>
-    <script src="{{ asset('assets/js/admin/category.js') }}"></script>
-    <script src="{{ asset('assets/js/multiple-images.js') }}"></script>
+{{--    <script src="{{ asset('assets/js/admin/posts.js') }}"></script>--}}
+{{--    <script src="{{ asset('assets/js/admin/posts.image.js') }}"></script>--}}
     <script src="{{ asset('assets/js/libs/wysihtml5/wysihtml5-0.3.0.js') }}"></script>
     <script src="{{ asset('assets/js/libs/wysihtml5/bootstrap-wysigtml5.js') }}"></script>
     <script>
         $("#wysiwyg").wysihtml5();
     </script>
+    <script src="{{ asset('assets/js/admin/images.js') }}"></script>
+    <script src="{{ asset('assets/js/admin/category.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
 @stop
-

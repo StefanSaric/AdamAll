@@ -76,12 +76,21 @@ class CommercialsController extends Controller
                 $commercials->image = $image;
                 $commercials->save();
             }
-
-
-            Session::flash('message', 'success_Reklama je uređen!');
-
-            return redirect('admin/commercials');
         }
+
+        if ($request->get('removeimage') != null) {
+            $removeimage = $request->get('removeimage');
+            if ($removeimage == "true") {
+                $commercials->update([
+                    'image' => null
+                ]);
+            }
+        }
+
+        Session::flash('message', 'success_Reklama je uređen!');
+
+        return redirect('admin/commercials');
+
     }
 
     public function delete($id)

@@ -1,8 +1,8 @@
 @extends('admin.dash')
 
 @section('pageCss')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/libs/select2/select2.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/libs/multi-select/multi-select.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/theme-default/libs/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/theme-default/libs/multi-select/multi-select.css')}}"/>
 @stop
 
 @section('content')
@@ -42,7 +42,7 @@
 @section('pageScripts')
 
     <!-- END FILE UPLOAD TEMPLATES -->
-    <script src="{{ asset('/assets/js/datatable.js') }}"></script>
+    <script src="{{ asset('/assets/js/libs/DataTables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/js/libs/jquery-validation/dist/jquery.validate.js') }}"></script>
     <script src="{{ asset('assets/js/libs/jquery-validation/dist/additional-methods.js') }}"></script>
 

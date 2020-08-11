@@ -73,10 +73,55 @@
             <label class="control-label">Slike:</label>
         </div>
         <div class="col-md-10">
+        @if(!isset($post))
             <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
             <input type="file" name="video" id="uploadVideoFiles" class="uploadVideoFiles" style="<?php if(!isset($post) || $post->type->id != 4) { echo "display:none;"; } ?> " accept="video/jpeg2000, video/mp4" multiple  />
+        @else
+            @if($post->type->name <> 'Video')
+                <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
+            @else
+               <input type="file" name="video" id="uploadVideoFiles" class="uploadVideoFiles" accept="video/jpeg2000, video/mp4" multiple  />
+            @endif
+        @endif
         </div>
     </div>
+    @if(isset($post))
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <div id="gallery">
+                    <div id="image-container">
+                        <ul id="image-list">
+                        @foreach($post->materials as $material)
+                        <li style="list-style-type: none;" id="image_{{$material->id}}">
+                            <div class="row">
+                            <div class="col-md-2" id="imagediv_{{$material->id}}">
+                                <div class="box-head">
+                                    <header>
+                                    </header>
+                                    <div class="tools">
+                                        <div class="btn-group btn-group-transparent">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-equal btn-sm removeImageDiv" id="remove_{{$material->id}}"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img class="thumbnail img-responsive img" src="{{asset($material->url)}}"  style="background-color: #f7f7f7; width:100%">
+                            </div>
+                            <div class="col-md-10"></div>
+                            </div>
+                        </li>
+                        @endforeach
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="removematerials" name="removematerials" value="[]">
+        <input type="hidden" id="sortImages" name="sortImages" value="[]">
+        @endif
     <div class = "form-group">
         <div class="col-md-2">
             <label class="control-label">Datum:</label>

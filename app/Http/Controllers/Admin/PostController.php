@@ -114,6 +114,35 @@ class PostController extends Controller
             }
         }
 
+        $removeArray = $request->get('removematerials');
+        $removes = json_decode( $removeArray );
+        if(sizeof($removes) > 0) {
+            foreach($removes as $remove) {
+                $material = Materials::where('id', $remove)->first();
+                if($material != null) {
+                    //$remove je id tog materijala
+                    Materials::where('id',$remove)->delete();
+                }
+            }
+        }
+
+        $sortImages = $request->get('sortImages');
+        if($sortImages != null) {
+            $sortImagesJson = json_decode( $sortImages );
+            if(sizeof($sortImagesJson) > 0) {
+                foreach($sortImagesJson as $num=>$img) {
+                    $num++;
+                    $material = Materials::where('id', $img)->first();
+                    if($material != null) {
+                        //$remove je id tog materijala
+                        $material->update([
+                           'ordernumber' => $num
+                        ]);
+                    }
+                }
+            }
+        }
+
         Session::flash('message', 'success_Vest je uređena!');
 
         return redirect('admin/posts');

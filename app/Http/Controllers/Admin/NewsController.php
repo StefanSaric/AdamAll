@@ -46,10 +46,10 @@ class NewsController extends Controller
                 $news->image = $image;
                 $news->save();
             }
-            Session::flash('message', 'success_Vest je dodata!');
-
-            return redirect('admin/news');
         }
+        Session::flash('message', 'success_Vest je dodata!');
+
+        return redirect('admin/news');
     }
 
     public function edit($id)
@@ -82,11 +82,11 @@ class NewsController extends Controller
             }
 
 
-            Session::flash('message', 'success_Vest je uređena!');
-
-            return redirect('admin/news');
 
         }
+        Session::flash('message', 'success_Vest je uređena!');
+        
+        return redirect('admin/news');
     }
 
     public function delete($id)
