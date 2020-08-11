@@ -71,7 +71,7 @@
     </div>
     <div class="logo" data-bg-image="{{asset("images/site/bg-header.jpg")}}">
         <h1>
-            <a href="index.html"><i class="weare">ADAM</i><i class="wearem"></i>ALL</a>
+            <a href="{{ url('/') }}"><i class="weare">ADAM</i><i class="wearem"></i>ALL</a>
         </h1>
     </div>
     <div class="menu-container">
@@ -81,9 +81,9 @@
                     <nav class="main-nav">
                         <ul>
                             <li class="current-menu-item">
-                                <a href="index.html">Početna</a>
+                                <a href="{{ url('/') }}">Početna</a>
                             </li>
-                            <li><a href="#vest_013">Novosti</a></li>
+                            <li><a href="#Vest_{{$posts[0]->id}}">Novosti</a></li>
                             <li><a href="#prijava">Prijava</a></li>
                             <li><a href="#najnovije">Najčitanije vesti</a></li>
                             <li><a href="#lokacija">Lokacija</a></li>
