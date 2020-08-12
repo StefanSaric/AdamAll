@@ -41,7 +41,7 @@ class RegistrationController extends Controller
         $registration->save();
 
         Session::flash('message', 'success_' . __('Registration is added!'));
-        return redirect('site');
+        return redirect('/');
     }
 
     public function edit($id)
