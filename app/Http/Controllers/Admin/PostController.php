@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use App\Post;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -31,9 +32,30 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
-        $now = time();
+        //dd($request->all();
+        if($request->get('category_id') == 1) {
+            if ($request->get('type_id') == 4) {
+                $validator = Validator::make($request->all(), [
+                    'video' => 'required',
+                ]);
+                if ($validator->fails()) {
+                    return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput($request->input());
+                }
+            } else {
+                $validator = Validator::make($request->all(), [
+                    'photos' => 'required',
+                ]);
+                if ($validator->fails()) {
+                    return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput($request->input());
+                }
+            }
+        }
 
+        $now = time();
         $post = Post::create($request->except('photos','videos'));
 
         $photo_id = 0;
@@ -50,6 +72,7 @@ class PostController extends Controller
                 $image = Materials::create(['post_id' => $post->id, 'url' => $url]);
             }
         }
+
         if($request->file('video') != null){
             $temp_video_name = 'video_' . $now . '.' . $request->file('video')->getClientOriginalExtension();
             $pathVideoFolder = 'videos/posts/'.$post->id;
@@ -81,6 +104,22 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
+        $removeArray = $request->get('removematerials');
+        $removes = json_decode( $removeArray );
+
+        if($post->type_id <> 4) {
+            if (sizeof($removes) == $post->materials->count()) {
+                $validator = Validator::make($request->all(), [
+                    'photos' => 'required',
+                ]);
+                if ($validator->fails()) {
+                    return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput($request->input());
+                }
+            }
+        }
+
         $post->update($request->except('photos', 'date'));
         $post->save();
 
@@ -114,8 +153,7 @@ class PostController extends Controller
             }
         }
 
-        $removeArray = $request->get('removematerials');
-        $removes = json_decode( $removeArray );
+
         if(sizeof($removes) > 0) {
             foreach($removes as $remove) {
                 $material = Materials::where('id', $remove)->first();
@@ -125,6 +163,9 @@ class PostController extends Controller
                 }
             }
         }
+
+
+
 
         $sortImages = $request->get('sortImages');
         if($sortImages != null) {

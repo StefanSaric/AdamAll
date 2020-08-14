@@ -10,7 +10,7 @@
             <label class="control-label">Slika Oglasa:</label>
         </div>
         <div class="col-md-10">
-            <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
+            <input type="file" name="photos" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
         </div>
         @if(isset($ad))
             <div class="form-group">
@@ -37,8 +37,8 @@
             <label class="control-label">Title Slike:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="text" name="image_title" id = "image_title" class="form-control" placeholder="image_title" value="{{ $ad->image_title }}" required />
-            @else <input type="text" name="image_title" id ="image_title" class="form-control form-validate" placeholder="image_title" required />
+            @if(isset($ad)) <input type="text" name="image_title" id = "image_title" class="form-control" placeholder="Title slike" value="{{ $ad->image_title }}" required />
+            @else <input type="text" name="image_title" id ="image_title" class="form-control form-validate" placeholder="Title slike" required />
             @endif
         </div>
     </div>
@@ -47,8 +47,8 @@
             <label class="control-label">Link Slike:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="url" name="image_link" id = "image_link" class="form-control" placeholder="image_link" value="{{ $ad->image_link }}" />
-            @else <input type="url" name="image_link" id ="image_link" class="form-control form-validate" placeholder="image_link" />
+            @if(isset($ad)) <input type="url" name="image_link" id = "image_link" class="form-control" placeholder="Link slike" value="{{ $ad->image_link }}" />
+            @else <input type="url" name="image_link" id ="image_link" class="form-control form-validate" placeholder="Link slike" />
             @endif
         </div>
     </div>
@@ -67,8 +67,8 @@
             <label class="control-label">Link:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="url" name="link" id = "link" class="form-control" placeholder="Link" value="{{ $ad->link }}" />
-            @else <input type="url" name="link" id ="link" class="form-control form-validate" placeholder="Link" />
+            @if(isset($ad)) <input type="url" name="link" id = "link" class="form-control" placeholder="link" value="{{ $ad->link }}" />
+            @else <input type="url" name="link" id ="link" class="form-control form-validate" placeholder="link" />
             @endif
         </div>
     </div>
@@ -77,8 +77,8 @@
             <label class="control-label">Tip Linka:</label>
         </div>
         <div class="col-md-10">
-                @if(isset($ad)) <input type="text" name="link_type" id = "link_type" class="form-control" placeholder="link_type" value="{{ $ad->link_type }}" />
-                @else <input type="text" name="link_type" id ="link_type" class="form-control form-validate" placeholder="link_type" />
+                @if(isset($ad)) <input type="text" name="link_type" id = "link_type" class="form-control" placeholder="Tip linka" value="{{ $ad->link_type }}" />
+                @else <input type="text" name="link_type" id ="link_type" class="form-control form-validate" placeholder="Tip linka" />
                 @endif
         </div>
 
@@ -88,8 +88,8 @@
             <label class="control-label">Title Linka:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="text" name="link_title" id = "link_title" class="form-control" placeholder="link_title" value="{{ $ad->link_title }}" required />
-            @else <input type="text" name="link_title" id ="link_title" class="form-control form-validate" placeholder="link_title" required />
+            @if(isset($ad)) <input type="text" name="link_title" id = "link_title" class="form-control" placeholder="Title linka" value="{{ $ad->link_title }}" required />
+            @else <input type="text" name="link_title" id ="link_title" class="form-control form-validate" placeholder="Title linka" required />
             @endif
         </div>
     </div>
@@ -98,8 +98,8 @@
             <label class="control-label">Tekst Linka:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="text" name="link_text" id = "link_text" class="form-control" placeholder="link_text" value="{{ $ad->link_text }}" required>
-            @else <input type="text" name="link_text" id ="link_text" class="form-control form-validate" placeholder="link_text" required>
+            @if(isset($ad)) <input type="text" name="link_text" id = "link_text" class="form-control" placeholder="Tekst linka" value="{{ $ad->link_text }}" required>
+            @else <input type="text" name="link_text" id ="link_text" class="form-control form-validate" placeholder="Tekst linka" required>
             @endif
         </div>
     </div>

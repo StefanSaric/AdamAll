@@ -6,6 +6,7 @@ use App\Commercials;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class CommercialsController extends Controller
@@ -25,6 +26,15 @@ class CommercialsController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'image' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
+
         $commercials = Commercials::create(['image_tag' => $request->image_tag, 'title' => $request->title,
             'link' => $request->link, 'text' => $request->text]);
 
@@ -58,25 +68,20 @@ class CommercialsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $commercials = Commercials::find($id);;
+        if ($request->get('removeimage') != null) {
+                $validator = Validator::make($request->all(), [
+                    'photos' => 'required',
+                ]);
+                if ($validator->fails()) {
+                    return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput($request->input());
+                }
+            }
+
+        $commercials = Commercials::find($id);
         $commercials->update($request->except('photos'));
         $commercials->save();
-
-        $photo_id = 0;
-        $path = 'images/commercials/' . $commercials->id;
-        if ($request->file('photos') != null) {
-            foreach ($request->file('photos') as $photo) {
-                $photo_id++;
-                $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                if (!is_dir(dirname($image_path))) {
-                    mkdir(dirname($image_path), 0777, true);
-                }
-                Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
-                $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                $commercials->image = $image;
-                $commercials->save();
-            }
-        }
 
         if ($request->get('removeimage') != null) {
             $removeimage = $request->get('removeimage');
@@ -85,6 +90,20 @@ class CommercialsController extends Controller
                     'image' => null
                 ]);
             }
+        }
+        $photo_id = 0;
+        $path = 'images/commercials/' . $commercials->id;
+        if ($request->file('photos') != null) {
+            $photo = $request->file('photos');
+            $photo_id++;
+            $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            if (!is_dir(dirname($image_path))) {
+                mkdir(dirname($image_path), 0777, true);
+            }
+            Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
+            $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            $commercials->image = $image;
+            $commercials->save();
         }
 
         Session::flash('message', 'success_Reklama je uređen!');

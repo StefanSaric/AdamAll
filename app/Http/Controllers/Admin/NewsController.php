@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\News;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class NewsController extends Controller
@@ -28,6 +29,15 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'image' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
+
         $news = News::create(['title' => $request->title,
             'text' => $request->text, 'post_link' => $request->post_link]);
 
@@ -85,7 +95,7 @@ class NewsController extends Controller
 
         }
         Session::flash('message', 'success_Vest je uređena!');
-        
+
         return redirect('admin/news');
     }
 

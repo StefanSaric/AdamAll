@@ -10,8 +10,8 @@
             <label class="control-label">Naslov:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($news)) <input type="text" name="title" id = "title" class="form-control" placeholder="title" value="{{ $news->title }}" required />
-            @else <input type="text" name="title" id ="title" class="form-control form-validate" placeholder="title" required />
+            @if(isset($news)) <input type="text" name="title" id = "title" class="form-control" placeholder="Naslov" value="{{ $news->title }}" required />
+            @else <input type="text" name="title" id ="title" class="form-control form-validate" placeholder="Naslov" required />
             @endif
         </div>
     </div>

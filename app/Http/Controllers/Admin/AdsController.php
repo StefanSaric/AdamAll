@@ -67,33 +67,20 @@ class AdsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'image' => 'dimensions:width=500,max_width=500,min_height=500,max_height=500'
-        ]);
-        if ($validator->fails()) {
-            $validator->errors()->add('field', 'Slika nije odgovarajuceg formata!');
-            return redirect()->back()
-                ->withErrors($validator);
+        if ($request->get('removeimage') != null) {
+            $validator = Validator::make($request->all(), [
+                'photos' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput($request->input());
+            }
         }
+
         $ad = Ads::find($id);
         $ad->update($request->except('photos'));
         $ad->save();
-
-        $photo_id = 0;
-        $path = 'images/ads/' . $ad->id;
-        if ($request->file('photos') != null) {
-            foreach ($request->file('photos') as $photo) {
-                $photo_id++;
-                $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                if (!is_dir(dirname($image_path))) {
-                    mkdir(dirname($image_path), 0777, true);
-                }
-                Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
-                $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                $ad->image = $image;
-                $ad->save();
-            }
-        }
 
         if ($request->get('removeimage') != null) {
             $removeimage = $request->get('removeimage');
@@ -103,6 +90,23 @@ class AdsController extends Controller
                 ]);
             }
         }
+
+        $photo_id = 0;
+        $path = 'images/ads/' . $ad->id;
+        if ($request->file('photos') != null) {
+            $photo = $request->file('photos');
+            $photo_id++;
+            $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            if (!is_dir(dirname($image_path))) {
+                mkdir(dirname($image_path), 0777, true);
+            }
+            Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
+            $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            $ad->image = $image;
+            $ad->save();
+        }
+
+
         Session::flash('message', 'success_Oglas je uređen!');
 
         return redirect('admin/ads');

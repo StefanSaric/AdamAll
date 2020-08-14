@@ -10,7 +10,7 @@
             <label class="control-label">Slika:</label>
         </div>
         <div class="col-md-10">
-            <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
+            <input type="file" name="photos" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
         </div>
         @if(isset($commercials))
             <div class="form-group">
@@ -37,8 +37,8 @@
             <label class="control-label">Tag Slike:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($commercials)) <input type="text" name="image_tag" id = "image_tag" class="form-control" placeholder="image_tag" value="{{ $commercials->image_tag }}" required />
-            @else <input type="text" name="image_tag" id ="image_tag" class="form-control form-validate" placeholder="image_tag" required />
+            @if(isset($commercials)) <input type="text" name="image_tag" id = "image_tag" class="form-control" placeholder="Tag" value="{{ $commercials->image_tag }}" required />
+            @else <input type="text" name="image_tag" id ="image_tag" class="form-control form-validate" placeholder="Tag" required />
             @endif
         </div>
     </div>
@@ -47,8 +47,8 @@
             <label class="control-label">Naslov:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($commercials)) <input type="title" name="title" id = "title" class="form-control" placeholder="title" value="{{ $commercials->title }}" required />
-            @else <input type="text" name="title" id ="title" class="form-control form-validate" placeholder="title" required />
+            @if(isset($commercials)) <input type="title" name="title" id = "title" class="form-control" placeholder="Naslov" value="{{ $commercials->title }}" required />
+            @else <input type="text" name="title" id ="title" class="form-control form-validate" placeholder="Naslov" required />
             @endif
         </div>
     </div>
