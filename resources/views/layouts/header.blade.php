@@ -8,7 +8,7 @@
         <div class="navbar-header">
             <a class="btn btn-transparent btn-equal btn-menu" href="javascript:void(0);"><i class="fa fa-bars fa-lg"></i></a>
             <div class="navbar-brand">
-                <a class="main-bran{{ asset("/html/dashboards/dashboard.html")}}">
+                <a class="main-bran{{ asset("/admin")}}">
                     <h3 class="text-light text-white"><span>Boost<strong>Box</strong> </span><i class="fa fa-rocket fa-fw"></i></h3>
                 </a>
             </div><!--end .navbar-brand -->
@@ -17,7 +17,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="header-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ asset("/html/dashboards/dashboard.html")}}"><i class="fa fa-home fa-lg"></i></a></li>
+                <li><a href="{{ asset("/admin")}}"><i class="fa fa-home fa-lg"></i></a></li>
             </ul><!--end .nav -->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

@@ -37,9 +37,12 @@
             <label class="control-label">Tag Slike:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($commercials)) <input type="text" name="image_tag" id = "image_tag" class="form-control" placeholder="Tag" value="{{ $commercials->image_tag }}" required />
-            @else <input type="text" name="image_tag" id ="image_tag" class="form-control form-validate" placeholder="Tag" required />
+            @if(isset($commercials)) <input type="text" name="image_tag" id = "image_tag" class="form-control" @error('image_tag') is-invalid @enderror placeholder="Tag" value="{{ $commercials->image_tag }}" required />
+            @else <input type="text" name="image_tag" id ="image_tag" class="form-control form-validate" @error('image_tag') is-invalid @enderror placeholder="Tag" value="{{ old('image_tag') }}" required />
             @endif
+            @error('image_tag')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group">
@@ -47,9 +50,12 @@
             <label class="control-label">Naslov:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($commercials)) <input type="title" name="title" id = "title" class="form-control" placeholder="Naslov" value="{{ $commercials->title }}" required />
-            @else <input type="text" name="title" id ="title" class="form-control form-validate" placeholder="Naslov" required />
+            @if(isset($commercials)) <input type="title" name="title" id = "title" class="form-control" @error('title') is-invalid @enderror placeholder="Naslov" value="{{ $commercials->title }}" required />
+            @else <input type="text" name="title" id ="title" class="form-control form-validate" @error('title') is-invalid @enderror placeholder="Naslov" value="{{ old('title') }}" required />
             @endif
+            @error('title')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group">
@@ -57,9 +63,12 @@
             <label class="control-label">Link:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($commercials)) <input type="url" name="link" id = "link" class="form-control" placeholder="Link" value="{{ $commercials->link }}" />
-            @else <input type="url" name="link" id ="link" class="form-control form-validate" placeholder="Link" />
+            @if(isset($commercials)) <input type="url" name="link" id = "link" class="form-control" @error('link') is-invalid @enderror placeholder="Link" value="{{ $commercials->link }}" required/>
+            @else <input type="url" name="link" id ="link" class="form-control form-validate" @error('link') is-invalid @enderror placeholder="Link" value="{{ old('link') }}" required/>
             @endif
+            @error('link')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class="form-group">
@@ -67,9 +76,12 @@
             <label class="control-label">Tekst:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($commercials)) <textarea id="wysiwyg" class="form-control control-5-rows textarea" placeholder="Enter text ..." spellcheck="false" name="text" >{{ $commercials->text }}</textarea>
-            @else <textarea id="wysiwyg" class="form-control control-5-rows textarea" placeholder="Unesite tekst ..." spellcheck="false" name="text"  ></textarea>
+            @if(isset($commercials)) <textarea id="wysiwyg" class="form-control control-5-rows textarea"  @error('text') is-invalid @enderror placeholder="Enter text ..." spellcheck="false" name="text" >{{ $commercials->text }}</textarea>
+            @else <textarea id="wysiwyg" class="form-control control-5-rows textarea"  @error('text') is-invalid @enderror placeholder="Unesite tekst ..." spellcheck="false" name="text" >{{ old('text') }}</textarea>
             @endif
+            @error('text')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class="form-group">

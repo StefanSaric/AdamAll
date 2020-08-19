@@ -15,7 +15,7 @@
 
     <section>
         <ol class="breadcrumb">
-            <li>AdamAll</li><li><a href="{{URL('/admin/home')}}">{{__('Admin Page')}}</a></li>
+            <li>AdamAll</li><li>Dashboard</li>
         </ol>
         <div class="section-header">
             <h3 class="text-standard"><i class="fa fa-fw fa-arrow-circle-right text-gray-light"></i>Dashboard</h3>

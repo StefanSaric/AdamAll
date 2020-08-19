@@ -20,7 +20,7 @@ class RoleController extends Controller
     {
         $roles = Role::all();
         //dd($roles);
-        return view('admin.roles.allroles', ['active' => 'allUsers', 'roles' => $roles]);
+        return view('admin.roles.allroles', ['active' => 'allRoles', 'roles' => $roles]);
     }
 
     /**
@@ -32,7 +32,7 @@ class RoleController extends Controller
     {
         $roles = Role::all(); //list of objects (params: id, name)
 
-        return view('admin.roles.create', ['active' => 'addUser', 'roles' => $roles]);
+        return view('admin.roles.create', ['active' => 'addRole', 'roles' => $roles]);
 
     }
 

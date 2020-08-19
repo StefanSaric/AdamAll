@@ -12,10 +12,10 @@
 
     <!-- BEGIN STYLESHEETS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700,800' rel='stylesheet' type='text/css'/>
-    <link type="text/css" rel="stylesheet" href="{{ asset("/assets/css/theme-default/bootstrap.css?1403937764") }}" />
-    <link type="text/css" rel="stylesheet" href="{{ asset("/assets/css/theme-default/boostbox.css?1403937765")}}" />
-    <link type="text/css" rel="stylesheet" href="{{ asset("/assets/css/theme-default/boostbox_responsive.css?1403937765")}}" />
-    <link type="text/css" rel="stylesheet" href="{{ asset("/assets/css/theme-default/font-awesome.min.css?1401481653")}}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset("/assets/css/theme-default/bootstrap.css") }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset("/assets/css/theme-default/boostbox.css")}}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset("/assets/css/theme-default/boostbox_responsive.css")}}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset("/assets/css/theme-default/font-awesome.min.css")}}" />
     <!-- END STYLESHEETS -->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -29,8 +29,7 @@
 <div class="box-type-login">
     <div class="box text-center">
         <div class="box-head">
-            <h2 class="text-light text-white">Boost<strong>Box</strong> <i class="fa fa-rocket fa-fw"></i></h2>
-            <h4 class="text-light text-inverse-alt">Ease your output with BoostBox</h4>
+            <h2 class="text-light text-white">Adam<strong>All</strong> <i class="fa fa-shopping-basket fa-fw"></i></h2>
         </div>
         <div class="box-body box-centered style-inverse">
             <h2 class="text-light">Sign in to your account</h2>

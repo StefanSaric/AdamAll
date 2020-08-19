@@ -14,13 +14,13 @@ class RoleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next,$role)
+    public function handle($request, Closure $next)
     {
 
-        if(Auth::user()->hasRole($role)){
+        if(Auth::user() != null){
             return $next($request);
         }
         Auth::logout();
-        return redirect('/');
+        return redirect('/admin/login');
     }
 }

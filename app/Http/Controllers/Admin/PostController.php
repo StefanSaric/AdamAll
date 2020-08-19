@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         $posts = Post::with('type','category','materials')->where('show', '=', 1)->orderBy('date','desc')->get();
 
-        return view('admin.posts.allposts', ['active' => 'allposts', 'posts' => $posts]);
+        return view('admin.posts.allposts', ['active' => 'allPosts', 'posts' => $posts]);
     }
 
     /*--- Returns empty form for inputing new Post ---*/
@@ -45,7 +45,7 @@ class PostController extends Controller
                 }
             } else {
                 $validator = Validator::make($request->all(), [
-                    'photos' => 'required',
+                    'image' => 'required',
                 ]);
                 if ($validator->fails()) {
                     return redirect()->back()
@@ -110,7 +110,7 @@ class PostController extends Controller
         if($post->type_id <> 4) {
             if (sizeof($removes) == $post->materials->count()) {
                 $validator = Validator::make($request->all(), [
-                    'photos' => 'required',
+                    'image' => 'required',
                 ]);
                 if ($validator->fails()) {
                     return redirect()->back()
@@ -153,7 +153,6 @@ class PostController extends Controller
             }
         }
 
-
         if(sizeof($removes) > 0) {
             foreach($removes as $remove) {
                 $material = Materials::where('id', $remove)->first();
@@ -163,9 +162,6 @@ class PostController extends Controller
                 }
             }
         }
-
-
-
 
         $sortImages = $request->get('sortImages');
         if($sortImages != null) {

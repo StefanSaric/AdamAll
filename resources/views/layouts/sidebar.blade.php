@@ -3,7 +3,7 @@
     <div class="sidebar-back"></div>
     <div class="sidebar-content">
         <div class="nav-brand">
-            <a class="main-brand" href="{{ asset("/html/dashboards/dashboard.html")}}">
+            <a class="main-brand" href="{{ asset('admin')}}">
                 <h3 class="text-light text-white"><span>Boost<strong>Box</strong> </span><i class="fa fa-rocket fa-fw"></i></h3>
             </a>
         </div>
@@ -26,7 +26,8 @@
             <!-- Menu Dashboard -->
             <li>
                 <a href="{{ url('/admin')}}" >
-                    <i class="fa fa-home fa-fw"></i><span class="title">Dashboard</span>
+                    <a href=" <?php echo url('admin'); ?> " <?php if($active=="dash"){ echo "class='active'";}?> >
+                        <i class="fa fa-cogs  fa-fw"></i><span class="title">Dashboard</span>
                 </a>
             </li><!--end /menu-item -->
             <!-- Menu UI -->
@@ -37,8 +38,8 @@
                 </a>
                 <!--start submenu -->
                 <ul>
-                    <li><a href="{{ url('admin\users') }}" >All Users</a></li>
-                    <li><a href="{{ url('admin\users\create')}}" >Create User</a></li>
+                    <li><a href="<?php echo url('admin\users'); ?>" <?php if($active == 'allUsers'){ echo "class='active'";}?> >All Users</a></li>
+                    <li><a href="<?php echo url('admin\users\create'); ?>" <?php if($active == 'addUser'){ echo "class='active'";}?> >Create User</a></li>
                 </ul><!--end /submenu -->
             </li><!--end /menu-item -->
             @endif
@@ -48,8 +49,8 @@
                     <i class="fa fa-sort fa-fw"></i><span class="title">Roles</span> <span class="expand-sign">+</span>
                 </a>
                 <ul>
-                    <li><a href="{{ url('admin\roles') }}" >All Roles</a></li>
-                    <li><a href="{{ url('admin\roles\create')}}" >Create Role</a></li>
+                    <li><a href="<?php echo url('admin\roles'); ?>" <?php if($active == 'allRoles'){ echo "class='active'";}?> >All Roles</a></li>
+                    <li><a href="<?php echo url('admin\roles\create'); ?>" <?php if($active == 'addRole'){ echo "class='active'";}?> >Create Role</a></li>
                 </ul>
             </li>
             @endif
@@ -59,8 +60,8 @@
                 </a>
                 <!--start submenu -->
                 <ul>
-                    <li><a href="{{ url('admin\posts') }}" >All Posts</a></li>
-                    <li><a href="{{ url('admin\posts\create')}}" >Create Post</a></li>
+                    <li><a href="<?php echo url('admin\posts'); ?>" <?php if($active == 'allPosts'){ echo "class='active'";}?> >All Posts</a></li>
+                    <li><a href="<?php echo url('admin\posts\create'); ?>" <?php if($active == 'addPost'){ echo "class='active'";}?> >Create Post</a></li>
                 </ul><!--end /submenu -->
             </li><!--end /menu-item -->
             <li>
@@ -69,8 +70,8 @@
                 </a>
                 <!--start submenu -->
                 <ul>
-                    <li><a href="{{ url('admin\ads') }}" >All Ads</a></li>
-                    <li><a href="{{ url('admin\ads\create')}}" >Create Ad</a></li>
+                    <li><a href="<?php echo url('admin\ads'); ?>" <?php if($active == 'allAds'){ echo "class='active'";}?> >All Ads</a></li>
+                    <li><a href="<?php echo url('admin\ads\create'); ?>" <?php if($active == 'addAds'){ echo "class='active'";}?> >Create Ad</a></li>
                 </ul><!--end /submenu -->
             </li><!--end /menu-item -->
             <li>
@@ -79,8 +80,8 @@
                 </a>
                 <!--start submenu -->
                 <ul>
-                    <li><a href="{{ url('admin\news') }}" >All News</a></li>
-                    <li><a href="{{ url('admin\news\create')}}" >Create News</a></li>
+                    <li><a href="<?php echo url('admin\news'); ?>" <?php if($active == 'allNews'){ echo "class='active'";}?> >All News</a></li>
+                    <li><a href="<?php echo url('admin\news\create'); ?>" <?php if($active == 'addNews'){ echo "class='active'";}?> >Create News</a></li>
                 </ul><!--end /submenu -->
             </li><!--end /menu-item -->
             <li>
@@ -89,8 +90,8 @@
                 </a>
                 <!--start submenu -->
                 <ul>
-                    <li><a href="{{ url('admin\commercials') }}" >All Commercials</a></li>
-                    <li><a href="{{ url('admin\commercials\create')}}" >Create Commercials</a></li>
+                    <li><a href="<?php echo url('admin\commercials'); ?>" <?php if($active == 'allCommercials'){ echo "class='active'";}?> >All Commercials</a></li>
+                    <li><a href="<?php echo url('admin\commercials\create'); ?>" <?php if($active == 'addCommercials'){ echo "class='active'";}?> >Create Commercial</a></li>
                 </ul><!--end /submenu -->
             </li><!--end /menu-item -->
             <li>
@@ -99,8 +100,8 @@
                 </a>
                 <!--start submenu -->
                 <ul>
-                    <li><a href="{{ url('admin\registrations') }}" >All Registrations</a></li>
-                    <li><a href="{{ url('admin\registrations\create')}}" >Create Registration</a></li>
+                    <li><a href="<?php echo url('admin\registrations'); ?>" <?php if($active == 'allRegistrations'){ echo "class='active'";}?> >All Registrations</a></li>
+                    <li><a href="<?php echo url('admin\registrations\create'); ?>" <?php if($active == 'addRegistrations'){ echo "class='active'";}?> >Create Registration</a></li>
                 </ul><!--end /submenu -->
             </li><!--end /menu-item -->
             <!-- Menu Pages -->

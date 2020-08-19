@@ -10,9 +10,12 @@
             <label class="control-label">Naslov:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($news)) <input type="text" name="title" id = "title" class="form-control" placeholder="Naslov" value="{{ $news->title }}" required />
-            @else <input type="text" name="title" id ="title" class="form-control form-validate" placeholder="Naslov" required />
+            @if(isset($news)) <input type="text" name="title" id = "title" class="form-control" @error('title') is-invalid @enderror placeholder="Naslov" value="{{ $news->title }}" required />
+            @else <input type="text" name="title" id ="title" class="form-control form-validate" @error('title') is-invalid @enderror placeholder="Naslov" value="{{ old('title') }}" required />
             @endif
+            @error('title')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class="form-group">
@@ -20,7 +23,7 @@
             <label class="control-label">Slika:</label>
         </div>
         <div class="col-md-10">
-            <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
+            <input type="file" name="photos" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
         </div>
     </div>
     <div class="form-group">
@@ -28,9 +31,12 @@
             <label class="control-label">Tekst:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($news)) <textarea id="wysiwyg" class="form-control control-5-rows textarea" placeholder="Enter text ..." spellcheck="false" name="text" >{{ $news->text }}</textarea>
-            @else <textarea id="wysiwyg" class="form-control control-5-rows textarea" placeholder="Unesite tekst ..." spellcheck="false" name="text"  ></textarea>
+            @if(isset($news)) <textarea id="wysiwyg" class="form-control control-5-rows textarea" @error('text') is-invalid @enderror placeholder="Enter text ..." spellcheck="false" name="text" required>{{ $news->text }} </textarea>
+            @else <textarea id="wysiwyg" class="form-control control-5-rows textarea" @error('text') is-invalid @enderror placeholder="Unesite tekst ..." spellcheck="false" name="text"  required>{{ old('text') }}</textarea>
             @endif
+            @error('text')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group"><!-- Select Type-->

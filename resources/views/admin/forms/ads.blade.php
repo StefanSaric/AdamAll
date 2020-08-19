@@ -37,9 +37,12 @@
             <label class="control-label">Title Slike:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="text" name="image_title" id = "image_title" class="form-control" placeholder="Title slike" value="{{ $ad->image_title }}" required />
-            @else <input type="text" name="image_title" id ="image_title" class="form-control form-validate" placeholder="Title slike" required />
+            @if(isset($ad)) <input type="text" name="image_title" id = "image_title" class="form-control" @error('image_title') is-invalid @enderror placeholder="Title slike" value="{{ $ad->image_title }}" required />
+            @else <input type="text" name="image_title" id ="image_title" class="form-control form-validate" @error('image_title') is-invalid @enderror placeholder="Title slike" value="{{ old('image_title') }}" required />
             @endif
+            @error('image_title')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group">
@@ -47,9 +50,12 @@
             <label class="control-label">Link Slike:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="url" name="image_link" id = "image_link" class="form-control" placeholder="Link slike" value="{{ $ad->image_link }}" />
-            @else <input type="url" name="image_link" id ="image_link" class="form-control form-validate" placeholder="Link slike" />
+            @if(isset($ad)) <input type="url" name="image_link" id = "image_link" class="form-control" @error('image_link') is-invalid @enderror placeholder="Link slike" value="{{ $ad->image_link }}" required/>
+            @else <input type="url" name="image_link" id ="image_link" class="form-control form-validate" @error('image_link') is-invalid @enderror placeholder="Link slike" value="{{ old('image_link') }}" required/>
             @endif
+            @error('image_link')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class="form-group">
@@ -57,9 +63,12 @@
             <label class="control-label">Tekst:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <textarea id="wysiwyg" class="form-control control-5-rows textarea" placeholder="Enter text ..." spellcheck="false" name="text" >{{ $ad->text }}</textarea>
-            @else <textarea id="wysiwyg" class="form-control control-5-rows textarea" placeholder="Unesite tekst ..." spellcheck="false" name="text"  ></textarea>
+            @if(isset($ad)) <textarea id="wysiwyg" class="form-control control-5-rows textarea" @error('text') is-invalid @enderror placeholder="Enter text ..." spellcheck="false" name="text" required>{{ $ad->text }}</textarea>
+            @else <textarea id="wysiwyg" class="form-control control-5-rows textarea" @error('text') is-invalid @enderror placeholder="Unesite tekst ..." spellcheck="false" name="text" required >{{ old('text') }}</textarea>
             @endif
+            @error('text')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group">
@@ -67,9 +76,12 @@
             <label class="control-label">Link:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="url" name="link" id = "link" class="form-control" placeholder="link" value="{{ $ad->link }}" />
-            @else <input type="url" name="link" id ="link" class="form-control form-validate" placeholder="link" />
+            @if(isset($ad)) <input type="url" name="link" id = "link" class="form-control" @error('link') is-invalid @enderror placeholder="link" value="{{ $ad->link }}" required/>
+            @else <input type="url" name="link" id ="link" class="form-control form-validate" @error('link') is-invalid @enderror placeholder="link" value="{{ old('link') }}" required/>
             @endif
+            @error('link')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group"><!-- Select Type-->
@@ -77,9 +89,12 @@
             <label class="control-label">Tip Linka:</label>
         </div>
         <div class="col-md-10">
-                @if(isset($ad)) <input type="text" name="link_type" id = "link_type" class="form-control" placeholder="Tip linka" value="{{ $ad->link_type }}" />
-                @else <input type="text" name="link_type" id ="link_type" class="form-control form-validate" placeholder="Tip linka" />
-                @endif
+            @if(isset($ad)) <input type="text" name="link_type" id = "link_type" class="form-control" @error('link_type') is-invalid @enderror placeholder="Tip linka" value="{{ $ad->link_type }}" required/>
+            @else <input type="text" name="link_type" id ="link_type" class="form-control form-validate" @error('link_type') is-invalid @enderror placeholder="Tip linka" value="{{ old('link_type') }}" required/>
+            @endif
+            @error('link_type')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
     </div><!-- end of type selection form field -->
@@ -88,9 +103,12 @@
             <label class="control-label">Title Linka:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="text" name="link_title" id = "link_title" class="form-control" placeholder="Title linka" value="{{ $ad->link_title }}" required />
-            @else <input type="text" name="link_title" id ="link_title" class="form-control form-validate" placeholder="Title linka" required />
+            @if(isset($ad)) <input type="text" name="link_title" id = "link_title" class="form-control" @error('link_title') is-invalid @enderror placeholder="Title linka" value="{{ $ad->link_title }}" required />
+            @else <input type="text" name="link_title" id ="link_title" class="form-control form-validate" @error('link_title') is-invalid @enderror placeholder="Title linka" value="{{ old('link_title') }}" required />
             @endif
+            @error('link_title')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group">
@@ -98,9 +116,12 @@
             <label class="control-label">Tekst Linka:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($ad)) <input type="text" name="link_text" id = "link_text" class="form-control" placeholder="Tekst linka" value="{{ $ad->link_text }}" required>
-            @else <input type="text" name="link_text" id ="link_text" class="form-control form-validate" placeholder="Tekst linka" required>
+            @if(isset($ad)) <input type="text" name="link_text" id = "link_text" class="form-control" @error('link_text') is-invalid @enderror placeholder="Tekst linka" value="{{ $ad->link_text }}" required>
+            @else <input type="text" name="link_text" id ="link_text" class="form-control form-validate" @error('link_text') is-invalid @enderror placeholder="Tekst linka" value="{{ old('link_text') }}" required>
             @endif
+            @error('link_text')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
 </div><!-- end of form group -->

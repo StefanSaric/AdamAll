@@ -10,8 +10,8 @@
             <label class="control-label">{{__('Name')}}:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($user)) <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"" placeholder="" value="{{ $user->name }}" required></input>
-            @else <input type="text" name="name" id="name" class="form-control form-validate @error('name') is-invalid @enderror"" placeholder="" value="{{ old('name') }}" required></input>
+            @if(isset($user)) <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"" placeholder="name" value="{{ $user->name }}" required></input>
+            @else <input type="text" name="name" id="name" class="form-control form-validate @error('name') is-invalid @enderror"" placeholder="name" value="{{ old('name') }}" required></input>
             @endif
             @error('name')
             <div class="alert alert-danger">{{ $message }}</div>

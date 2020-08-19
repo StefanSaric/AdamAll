@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Boostbox - Dashboard</title>
+    <title>AdamAll - Admin Panel</title>
     @include('layouts.head')
 </head>
 <body class="body-striped">

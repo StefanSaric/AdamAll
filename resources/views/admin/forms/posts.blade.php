@@ -21,9 +21,12 @@
             <label class="control-label">Naslov:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($post)) <input type="text" name="title" id = "title" class="form-control" placeholder="naslov" value="{{ $post->title }}" required />
-            @else <input type="text" name="title" id ="title" class="form-control form-validate" placeholder="naslov" required />
+            @if(isset($post)) <input type="text" name="title" id = "title" class="form-control" @error('title') is-invalid @enderror placeholder="naslov" value="{{ $post->title }}" required />
+            @else <input type="text" name="title" id ="title" class="form-control form-validate" @error('title') is-invalid @enderror placeholder="naslov" value="{{ old('title') }}" required />
             @endif
+            @error('title')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group">
@@ -31,9 +34,12 @@
             <label class="control-label">Izvor Posta:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($post)) <input type="text" name="source" id = "source" class="form-control" placeholder="izvor" value="{{ $post->source }}" />
-            @else <input type="text" name="source" id ="source" class="form-control form-validate" placeholder="izvor" />
+            @if(isset($post)) <input type="text" name="source" id = "source" class="form-control" @error('source') is-invalid @enderror placeholder="izvor" value="{{ $post->source }}" />
+            @else <input type="text" name="source" id ="source" class="form-control form-validate" @error('source') is-invalid @enderror placeholder="izvor" value="{{ old('source') }}" />
             @endif
+            @error('source')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group">
@@ -41,9 +47,12 @@
             <label class="control-label">Link ka izvoru:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($post)) <input type="url" name="link" id = "link" class="form-control" placeholder="Link" value="{{ $post->link }}" />
-            @else <input type="url" name="link" id ="link" class="form-control form-validate" placeholder="Link" />
+            @if(isset($post)) <input type="url" name="link" id = "link" class="form-control" @error('link') is-invalid @enderror placeholder="Link" value="{{ $post->link }}" />
+            @else <input type="url" name="link" id ="link" class="form-control form-validate" @error('link') is-invalid @enderror placeholder="Link" value="{{ old('link') }}"/>
             @endif
+            @error('link')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class = "form-group"><!-- Select Type-->
@@ -63,9 +72,12 @@
             <label class="control-label">Tekst:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($post)) <textarea id="wysiwyg" class="form-control control-5-rows textarea" placeholder="Enter text ..." spellcheck="false" name="text" >{{ $post->text }}</textarea>
-            @else <textarea id="wysiwyg" class="form-control control-5-rows textarea" placeholder="Unesite tekst ..." spellcheck="false" name="text"  ></textarea>
+            @if(isset($post)) <textarea id="wysiwyg" class="form-control control-5-rows textarea" @error('text') is-invalid @enderror placeholder="Enter text ..." spellcheck="false" name="text" >{{ $post->text }}</textarea>
+            @else <textarea id="wysiwyg" class="form-control control-5-rows textarea" @error('text') is-invalid @enderror placeholder="Unesite tekst ..." spellcheck="false" name="text" >{{ old('text') }}</textarea>
             @endif
+            @error('text')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
     <div class="form-group">
@@ -127,8 +139,8 @@
             <label class="control-label">Datum:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($posts))<input id='datepicker' type="date" name="date" id = "date" class="form-control datepicker" placeholder="" value="{{ $posts->date }}" data-provide="datepicker" required></input>
-            @else <input id='datepicker' type="date" name="date" id ="date" class="form-control form-validate datepicker" placeholder="" data-provide="datepicker" value="{{date("Y-m-d")}}" required></input>
+            @if(isset($posts))<input id='datepicker' type="date" name="date" id = "date" class="form-control datepicker" placeholder="" value="{{ $posts->date }}" data-provide="datepicker" required>
+            @else <input id='datepicker' type="date" name="date" id ="date" class="form-control form-validate datepicker" placeholder="" data-provide="datepicker" value="{{date("Y-m-d")}}" required>
             @endif
         </div>
     </div>
@@ -137,9 +149,12 @@
             <label class="control-label">Autor teksta:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($post)) <input type="text" name="signature" id = "signature" class="form-control" placeholder="Autor" value="{{ $post->signature }}" required></input>
-            @else <input type="text" name="signature" id ="signature" class="form-control form-validate" placeholder="Autor" required></input>
+            @if(isset($post)) <input type="text" name="signature" id = "signature" class="form-control" @error('signature') is-invalid @enderror placeholder="Autor" value="{{ $post->signature }}" required>
+            @else <input type="text" name="signature" id ="signature" class="form-control form-validate" @error('signature') is-invalid @enderror placeholder="Autor" value="{{ old('signature') }}" required>
             @endif
+            @error('signature')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
 </div><!-- end of form group -->

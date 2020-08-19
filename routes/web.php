@@ -23,9 +23,8 @@ Route::group(array('middleware' => 'guest'), function()
 });
 
 
-Route::group(['prefix' => 'admin'], function () {Route::get('/',function(){
-            return view('admin.dash');
-        });
+Route::group(['prefix' => 'admin', 'middleware' => 'role'], function () {
+        Route::get('/', 'Admin\AdminController@index');
         Route::resource('/users', 'Admin\UsersController');
         Route::resource('/roles', 'Admin\RoleController');
         Route::resource('/users/edit', 'Admin\UsersController@edit');

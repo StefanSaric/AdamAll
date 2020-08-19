@@ -44,19 +44,19 @@ class NewsController extends Controller
         $photo_id = 0;
         $path = 'images/news/' . $news->id;
         if ($request->file('photos') != null) {
-            foreach ($request->file('photos') as $photo) {
-                $photo_id++;
-                $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                if (!is_dir(dirname($image_path))) {
-                    mkdir(dirname($image_path), 0777, true);
-                }
-
-                Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
-                $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                $news->image = $image;
-                $news->save();
+            $photo = $request->file('photos');
+            $photo_id++;
+            $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            if (!is_dir(dirname($image_path))) {
+                mkdir(dirname($image_path), 0777, true);
             }
-        }
+
+            Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
+            $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            $news->image = $image;
+            $news->save();
+            }
+
         Session::flash('message', 'success_Vest je dodata!');
 
         return redirect('admin/news');
@@ -79,21 +79,19 @@ class NewsController extends Controller
         $photo_id = 0;
         $path = 'images/ads/' . $news->id;
         if ($request->file('photos') != null) {
-            foreach ($request->file('photos') as $photo) {
-                $photo_id++;
-                $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                if (!is_dir(dirname($image_path))) {
-                    mkdir(dirname($image_path), 0777, true);
-                }
-                Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
-                $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                $news->image = $image;
-                $news->save();
+            $photo = $request->file('photos');
+            $photo_id++;
+            $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            if (!is_dir(dirname($image_path))) {
+                mkdir(dirname($image_path), 0777, true);
             }
-
-
-
+            Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
+            $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            $news->image = $image;
+            $news->save();
         }
+
+
         Session::flash('message', 'success_Vest je uređena!');
 
         return redirect('admin/news');
