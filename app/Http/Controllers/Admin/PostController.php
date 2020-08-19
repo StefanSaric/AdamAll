@@ -110,7 +110,7 @@ class PostController extends Controller
         if($post->type_id <> 4) {
             if (sizeof($removes) == $post->materials->count()) {
                 $validator = Validator::make($request->all(), [
-                    'image' => 'required',
+                    'photos' => 'required',
                 ]);
                 if ($validator->fails()) {
                     return redirect()->back()
