@@ -41,22 +41,20 @@ class CommercialsController extends Controller
         $photo_id = 0;
         $path = 'images/commercials/' . $commercials->id;
         if ($request->file('photos') != null) {
-            foreach ($request->file('photos') as $photo) {
-                $photo_id++;
-                $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                if (!is_dir(dirname($image_path))) {
-                    mkdir(dirname($image_path), 0777, true);
-                }
-
-                Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
-                $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                $commercials->image = $image;
-                $commercials->save();
+            $photo = $request->file('photos');
+            $photo_id++;
+            $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            if (!is_dir(dirname($image_path))) {
+                mkdir(dirname($image_path), 0777, true);
             }
-            Session::flash('message', 'success_Vest je dodata!');
-
-            return redirect('admin/commercials');
+            Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
+            $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            $commercials->image = $image;
+            $commercials->save();
         }
+        Session::flash('message', 'success_Vest je dodata!');
+
+        return redirect('admin/commercials');
     }
 
     public function edit($id)

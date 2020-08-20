@@ -25,40 +25,38 @@ class AdsController extends Controller
 
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
-            'photos' => 'required | dimensions:min_width=500,max_width=500,min_height=500,max_height=500'
+            'photos' => 'required | dimensions:width=900,height=600'
         ]);
         if ($validator->fails()) {
-            $validator->errors()->add('field', 'Slika nije odgovarajuceg formata!');
-            if ($validator->fails()) {
-                return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput($request->input());
-            }
-            $ad = Ads::create(['image_title' => $request->image_title, 'image_link' => $request->image_link,
-                'text' => $request->text, 'link' => $request->link, 'link_type' => $request->link_type,
-                'link_title' => $request->link_title, 'link_text' => $request->link_text]);
-            $photo_id = 0;
-            $path = 'images/ads/' . $ad->id;
-            if ($request->file('photos') != null) {
-                foreach ($request->file('photos') as $photo) {
-                    $photo_id++;
-                    $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                    if (!is_dir(dirname($image_path))) {
-                        mkdir(dirname($image_path), 0777, true);
-                    }
-
-                    Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
-                    $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
-                    $ad->image = $image;
-                    $ad->save();
-                }
-
-                Session::flash('message', 'success_Oglas je dodat!');
-
-                return redirect('admin/ads');
-            }
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
         }
+
+        $ad = Ads::create(['image_title' => $request->image_title, 'image_link' => $request->image_link,
+            'text' => $request->text, 'link' => $request->link, 'link_type' => $request->link_type,
+            'link_title' => $request->link_title, 'link_text' => $request->link_text]);
+
+        $photo_id = 0;
+        $path = 'images/ads/' . $ad->id;
+        if ($request->file('photos') != null) {
+            $photo = $request->file('photos');
+            $photo_id++;
+            $image_path = public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            if (!is_dir(dirname($image_path))) {
+                mkdir(dirname($image_path), 0777, true);
+            }
+            Image::make($photo->getRealPath())->save(public_path($path) . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension());
+            $image = $path . '/slika_' . $photo_id . '.' . $photo->getClientOriginalExtension();
+            $ad->image = $image;
+            $ad->save();
+        }
+
+        Session::flash('message', 'success_Oglas je dodat!');
+
+        return redirect('admin/ads');
     }
 
     public function edit($id)
@@ -72,7 +70,7 @@ class AdsController extends Controller
     {
         if ($request->get('removeimage') != null) {
             $validator = Validator::make($request->all(), [
-                'photos' => 'required',
+                'photos' => 'required | dimensions:width=900,height=600',
             ]);
             if ($validator->fails()) {
                 return redirect()->back()
