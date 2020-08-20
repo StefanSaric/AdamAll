@@ -26,7 +26,7 @@ class AdsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'image' => 'required | dimensions:min_width=500,max_width=500,min_height=500,max_height=500'
+            'photos' => 'required | dimensions:min_width=500,max_width=500,min_height=500,max_height=500'
         ]);
         if ($validator->fails()) {
             $validator->errors()->add('field', 'Slika nije odgovarajuceg formata!');

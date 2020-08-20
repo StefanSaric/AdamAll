@@ -30,7 +30,7 @@ class NewsController extends Controller
     {
         //dd($request->all());
         $validator = Validator::make($request->all(), [
-            'image' => 'required',
+            'photos' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect()->back()
