@@ -2,7 +2,7 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     @if(isset($role))
         <div class="form-group" display="none">
-            <input class="hidden" name="user_id" id="user_id" value="{{ $role->id }}">
+            <input class="hidden" name="id" id="id" value="{{ $role->id }}">
         </div>
     @endif
     <div class = "form-group"><!-- Add/edit Role's name-->

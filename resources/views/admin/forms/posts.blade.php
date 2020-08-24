@@ -9,20 +9,26 @@
         <div class="col-md-2">
             <label class="control-label">Tip:</label>
         </div>
+        @if(!isset($post))
         <div class="col-md-10">
             <select name="category_id" id="category_id" class="form-control" placeholder="tip" required>
                 <option value="1" <?php if(isset($post) && $post->category_id == 1){ echo 'selected="selected"';} ?> >Vest</option>
                 <option value="2" <?php if(isset($post) && $post->category_id == 2){ echo 'selected="selected"';} ?> >Izjava</option>
             </select>
         </div>
+        @else
+        <div class="col-md-10">
+            <fieldset class="form-control" >{{$post->category->name}}</fieldset>
+        </div>
+        @endif
     </div><!-- end of type selection form field -->
     <div class = "form-group">
         <div class="col-md-2">
             <label class="control-label">Naslov:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($post)) <input type="text" name="title" id = "title" class="form-control" @error('title') is-invalid @enderror placeholder="naslov" value="{{ $post->title }}" required />
-            @else <input type="text" name="title" id ="title" class="form-control form-validate" @error('title') is-invalid @enderror placeholder="naslov" value="{{ old('title') }}" required />
+            @if(isset($post)) <input type="text" name="title" id = "title" class="form-control" style="<?php if(isset($post) && $post->category_id == 2) { echo "display:none;"; } ?>" @error('title') is-invalid @enderror placeholder="naslov" value="{{ $post->title }}" required />
+            @else <input type="text" name="title" id ="title" class="form-control form-validate" style="<?php if(isset($post) && $post->category_id == 2) { echo "display:none;"; } ?>" @error('title') is-invalid @enderror placeholder="naslov" value="{{ old('title') }}" required />
             @endif
             @error('title')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -34,8 +40,8 @@
             <label class="control-label">Izvor Posta:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($post)) <input type="text" name="source" id = "source" class="form-control" @error('source') is-invalid @enderror placeholder="izvor" value="{{ $post->source }}" />
-            @else <input type="text" name="source" id ="source" class="form-control form-validate" @error('source') is-invalid @enderror placeholder="izvor" value="{{ old('source') }}" />
+            @if(isset($post)) <input type="text" name="source" id = "source" class="form-control" style="<?php if(isset($post) && $post->category_id == 2) { echo "display:none;"; } ?>" @error('source') is-invalid @enderror placeholder="izvor" value="{{ $post->source }}" />
+            @else <input type="text" name="source" id ="source" class="form-control form-validate" style="<?php if(isset($post) && $post->category_id == 2) { echo "display:none;"; } ?>" @error('source') is-invalid @enderror placeholder="izvor" value="{{ old('source') }}" />
             @endif
             @error('source')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -47,8 +53,8 @@
             <label class="control-label">Link ka izvoru:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($post)) <input type="url" name="link" id = "link" class="form-control" @error('link') is-invalid @enderror placeholder="Link" value="{{ $post->link }}" />
-            @else <input type="url" name="link" id ="link" class="form-control form-validate" @error('link') is-invalid @enderror placeholder="Link" value="{{ old('link') }}"/>
+            @if(isset($post)) <input type="url" name="link" id = "link" class="form-control" style="<?php if(isset($post) && $post->category_id == 2) { echo "display:none;"; } ?>" @error('link') is-invalid @enderror placeholder="Link" value="{{ $post->link }}" />
+            @else <input type="url" name="link" id ="link" class="form-control form-validate" style="<?php if(isset($post) && $post->category_id == 2) { echo "display:none;"; } ?>" @error('link') is-invalid @enderror placeholder="Link" value="{{ old('link') }}"/>
             @endif
             @error('link')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -60,7 +66,7 @@
             <label class="control-label">Tip Materijala:</label>
         </div>
         <div class="col-md-10">
-            <select name="type_id" id="type_id" class="form-control" placeholder="tip" required>
+            <select name="type_id" id="type_id" class="form-control" style="<?php if(isset($post) && $post->category_id == 2) { echo "display:none;"; } ?>" placeholder="tip" required>
                 @foreach($types as $type)
                 <option value="{{ $type->id }}" <?php if(isset($post) && $post->type_id == $type->id){ echo 'selected="selected"';} ?> >{{ $type->name }}</option>
                 @endforeach
@@ -87,17 +93,14 @@
         <div class="col-md-10">
         @if(!isset($post))
             <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
-            <input type="file" name="video" id="uploadVideoFiles" class="uploadVideoFiles" style="<?php if(!isset($post) || $post->type->id != 4) { echo "display:none;"; } ?> " accept="video/jpeg2000, video/mp4" multiple  />
-        @else
-            @if($post->type->name <> 'Video')
-                <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" accept="image/jpg, image/jpeg, image/png" multiple />
-            @else
-               <input type="file" name="video" id="uploadVideoFiles" class="uploadVideoFiles" accept="video/jpeg2000, video/mp4" multiple  />
-            @endif
+            <input type="file" name="video" id="uploadVideoFiles" class="uploadVideoFiles" style="<?php if(!isset($post) || $post->type->id != 4) { echo "display:none;"; } ?>" accept="video/jpeg2000, video/mp4" multiple  />
+        @elseif(isset($post) && $post->category_id == 1)
+                <input type="file" name="photos[]" id="uploadPhotoFiles" class="uploadPhotoFiles" style="<?php if(isset($post) && $post->type->id == 4) { echo "display:none;"; } ?>" accept="image/jpg, image/jpeg, image/png" multiple />
+                <input type="file" name="video" id="uploadVideoFiles" class="uploadVideoFiles" style="<?php if(isset($post) && $post->type->id != 4) { echo "display:none;"; } ?>" accept="video/jpeg2000, video/mp4" multiple  />
         @endif
         </div>
     </div>
-    @if(isset($post))
+    @if(isset($post) && $post->category_id == 1)
         <div class="form-group">
             <div class="col-md-2"></div>
             <div class="col-md-10">

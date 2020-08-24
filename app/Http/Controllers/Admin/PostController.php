@@ -54,6 +54,14 @@ class PostController extends Controller
                 }
             }
         }
+        $validator = Validator::make($request->all(), [
+            'text' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
 
         $now = time();
         $post = Post::create($request->except('photos','videos'));
@@ -107,17 +115,38 @@ class PostController extends Controller
         $removeArray = $request->get('removematerials');
         $removes = json_decode( $removeArray );
 
-        if($post->type_id <> 4) {
-            if (sizeof($removes) == $post->materials->count()) {
-                $validator = Validator::make($request->all(), [
-                    'photos' => 'required',
-                ]);
-                if ($validator->fails()) {
-                    return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput($request->input());
+        if($post->category_id == 1) {
+            if ($post->type_id <> 4) {
+                if (sizeof($removes) == $post->materials->count() && $request->file('video') == null) {
+                    $validator = Validator::make($request->all(), [
+                        'photos' => 'required'
+                    ]);
+                    if ($validator->fails()) {
+                        return redirect()->back()
+                            ->withErrors($validator)
+                            ->withInput($request->input());
+                    }
+                } elseif ($post->type_id == 4) {
+                    if (sizeof($removes) == $post->materials->count() && $request->file('photos') == null) {
+                        $validator = Validator::make($request->all(), [
+                            'video' => 'required'
+                        ]);
+                        if ($validator->fails()) {
+                            return redirect()->back()
+                                ->withErrors($validator)
+                                ->withInput($request->input());
+                        }
+                    }
                 }
             }
+        }
+        $validator = Validator::make($request->all(), [
+            'text' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
         }
 
         $post->update($request->except('photos', 'date'));
@@ -153,12 +182,14 @@ class PostController extends Controller
             }
         }
 
-        if(sizeof($removes) > 0) {
-            foreach($removes as $remove) {
-                $material = Materials::where('id', $remove)->first();
-                if($material != null) {
-                    //$remove je id tog materijala
-                    Materials::where('id',$remove)->delete();
+        if($post->category_id == 1) {
+            if (sizeof($removes) > 0) {
+                foreach ($removes as $remove) {
+                    $material = Materials::where('id', $remove)->first();
+                    if ($material != null) {
+                        //$remove je id tog materijala
+                        Materials::where('id', $remove)->delete();
+                    }
                 }
             }
         }

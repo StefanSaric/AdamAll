@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function () {
         Route::resource('/commercials', 'Admin\CommercialsController');
         Route::resource('/registrations', 'Admin\RegistrationController');
         Route::get('/users/delete/{id}', 'Admin\UsersController@delete');
+        Route::get('/roles/delete/{id}', 'Admin\RoleController@delete');
         Route::get('/posts/delete/{id}', 'Admin\PostController@delete');
         Route::get('/ads/delete/{id}', 'Admin\AdsController@delete');
         Route::get('/news/delete/{id}', 'Admin\NewsController@delete');

@@ -10,7 +10,7 @@
             <label class="control-label">Email:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($registrations)) <input type="text" name="email" id = "email" class="form-control" placeholder="email" value="{{ $registrations->email }}" required />
+            @if(isset($registration)) <input type="text" name="email" id = "email" class="form-control" placeholder="email" value="{{ $registration->email }}" required />
             @else <input type="text" name="email" id ="email" class="form-control form-validate" placeholder="email" required />
             @endif
         </div>
@@ -20,7 +20,7 @@
             <label class="control-label">IP:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($registrations)) <input type="text" name="ip" id = "ip" class="form-control" placeholder="ip" value="{{ $registrations->ip }}" required />
+            @if(isset($registration)) <input type="text" name="ip" id = "ip" class="form-control" placeholder="ip" value="{{ $registration->ip }}" required />
             @else <input type="text" name="ip" id ="ip" class="form-control form-validate" placeholder="ip" required />
             @endif
         </div>
@@ -30,7 +30,7 @@
             <label class="control-label">Vreme:</label>
         </div>
         <div class="col-md-10">
-            @if(isset($registrations)) <input type="datetime-local" name="created_at" id = "created_at" class="form-control" placeholder="created_at" value="{{ $registrations->created_at }}" />
+            @if(isset($registration)) <input type="text" name="created_at" id = "created_at" class="form-control" placeholder="created_at" value="{{ $registration->created_at }}" />
             @else <input type="datetime-local" name="created_at" id ="created_at" class="form-control form-validate" placeholder="created_at" />
             @endif
         </div>

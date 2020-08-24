@@ -43,8 +43,8 @@
                                         <td>&nbsp;&nbsp;&nbsp;{{ $num + 1 }}</td>
                                         <td>{{ $role->name }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-xs btn-success editUser" data-toggle="tooltip" data-placement="top" data-original-title="{{__('Edit official')}}"><i class="fa fa-pencil"></i></button>
-                                            <button type="button" class="btn btn-xs btn-danger deleteUser" data-toggle="tooltip" data-placement="top" data-original-title="{{__('Delete official')}}"><i class="fa fa-trash-o"></i></button>
+                                            <a href="{{ url('admin/roles/'.$role->id.'/edit') }}" class="btn btn-xs btn-success editUser" data-toggle="tooltip" data-placement="top" data-original-title="{{__('Izmeni Rolu')}}"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{ url('admin/roles/delete/'.$role->id)}}" class="btn btn-xs btn-danger deleteUser" data-toggle="tooltip" data-placement="top" data-original-title="{{__('Obrisi Rolu')}}"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

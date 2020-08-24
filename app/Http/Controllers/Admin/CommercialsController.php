@@ -67,6 +67,8 @@ class CommercialsController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->get('removeimage') != null) {
+            $removeimage = $request->get('removeimage');
+            if ($removeimage == "true") {
                 $validator = Validator::make($request->all(), [
                     'photos' => 'required',
                 ]);
@@ -76,19 +78,12 @@ class CommercialsController extends Controller
                         ->withInput($request->input());
                 }
             }
+        }
 
         $commercials = Commercials::find($id);
         $commercials->update($request->except('photos'));
         $commercials->save();
 
-        if ($request->get('removeimage') != null) {
-            $removeimage = $request->get('removeimage');
-            if ($removeimage == "true") {
-                $commercials->update([
-                    'image' => null
-                ]);
-            }
-        }
         $photo_id = 0;
         $path = 'images/commercials/' . $commercials->id;
         if ($request->file('photos') != null) {

@@ -69,12 +69,16 @@ class AdsController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->get('removeimage') != null) {
-            $validator = Validator::make($request->all(), [
-                'photos' => 'required | dimensions:width=900,height=600',
-            ]);
-            if ($validator->fails()) {
-                return redirect()->back()
-                    ->withErrors($validator);
+            $removeimage = $request->get('removeimage');
+            if ($removeimage == "true") {
+                $validator = Validator::make($request->all(), [
+                    'photos' => 'required | dimensions:width=900,height=600',
+                ]);
+                if ($validator->fails()) {
+                    return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput($request->input());
+                }
             }
         }
 
@@ -82,14 +86,6 @@ class AdsController extends Controller
         $ad->update($request->except('photos'));
         $ad->save();
 
-        if ($request->get('removeimage') != null) {
-            $removeimage = $request->get('removeimage');
-            if ($removeimage == "true") {
-                $ad->update([
-                    'image' => null
-                ]);
-            }
-        }
 
         $photo_id = 0;
         $path = 'images/ads/' . $ad->id;
