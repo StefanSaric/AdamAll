@@ -171,14 +171,16 @@ class PostController extends Controller
 
         if ($request->file('video') != null) {
             $temp_video_name = 'video_' . $now . '.' . $request->file('video')->getClientOriginalExtension();
-            $path = public_path('videos/posts/' . $post->id) . '/' . $temp_video_name;
+            $pathVideo = 'videos/posts/' . $post->id;
+            $path = public_path($pathVideo) . '/' . $temp_video_name;
+            $urlVideo = $pathVideo . '/' . $temp_video_name;
             if (!is_dir(dirname($path))) {
                 mkdir(dirname($path), 0777, true);
             }
             $is_written = move_uploaded_file($request->file('video'), $path);
             if ($is_written) {
                 $video_name = $temp_video_name;
-                $video = Materials::create(['post_id' => $post->id, 'url' => $path]);
+                $video = Materials::create(['post_id' => $post->id, 'url' => $urlVideo]);
             }
         }
 
