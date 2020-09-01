@@ -48,10 +48,15 @@
                 <br>
                 <ol>
                     <?php if(isset($lines))
+                    if(count($lines) >= 5){
                     for($i = count($lines)-1; $i > count($lines)-6;$i--)
                     {
                     echo "<li> $lines[$i]</li>";
-                    } ?>
+                    }
+                    }
+                    else
+                    foreach ($lines as $line)
+                    echo "<li> $line</li>"?>
                 </ol>
             </div>
         </div><!--end .section-body -->

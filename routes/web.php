@@ -11,12 +11,13 @@
 |
 */
 
-//Auth::routes(['register' => false]);
+//Auth::routes(['register' => false, 'logout' => false]);
 
 Route::get('admin/login', function () {
     return view('login');
 });
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+//Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(array('middleware' => 'guest'), function()
 {

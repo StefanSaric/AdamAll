@@ -58,4 +58,10 @@ class LoginController extends Controller
             return back()->withError($e->getMessage())->withInput();
         }
     }
+    public function logout()
+    {
+        request()->session()->regenerate(true);
+        request()->session()->flush();
+        return redirect('admin/login');
+    }
 }
