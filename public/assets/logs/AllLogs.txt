@@ -1,0 +1,59 @@
+2020-08-31 18:23:04  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U, https://www.instagram.com/exe4u/, <u>dsas</u>, 2020-08-31 18:23:04, 2020-08-31 18:23:04))
+2020-08-31 18:27:02  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U, https://www.instagram.com/exe4u/, fsadsas, 2020-08-31 18:27:02, 2020-08-31 18:27:02))
+2020-08-31 18:51:52  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U - Web i Mobilne Aplikacije, https://www.instagram.com/exe4u/, asdf, 2020-08-31 18:51:52, 2020-08-31 18:51:52))
+2020-08-31 18:51:58  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U - Web i Mobilne Aplikacije, https://www.instagram.com/exe4u/, asdf, 2020-08-31 18:51:58, 2020-08-31 18:51:58))
+2020-08-31 18:52:04  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U - Web i Mobilne Aplikacije, https://www.instagram.com/exe4u/, asdf, 2020-08-31 18:52:04, 2020-08-31 18:52:04))
+2020-08-31 18:52:10  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U - Web i Mobilne Aplikacije, https://www.instagram.com/exe4u/, asdf, 2020-08-31 18:52:10, 2020-08-31 18:52:10))
+2020-08-31 18:52:15  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U - Web i Mobilne Aplikacije, https://www.instagram.com/exe4u/, asdf, 2020-08-31 18:52:15, 2020-08-31 18:52:15))
+2020-08-31 18:52:21  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U - Web i Mobilne Aplikacije, https://www.instagram.com/exe4u/, asdf, 2020-08-31 18:52:21, 2020-08-31 18:52:21))
+
+2020-08-31 18:53:45  |  Undefined variable: lines
+2020-08-31 18:53:45  |  Undefined variable: lines
+2020-08-31 18:53:45  |  Undefined variable: lines
+2020-08-31 18:53:45  |  Undefined variable: lines
+2020-08-31 18:53:45  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:46  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:47  |  Undefined variable: lines
+2020-08-31 18:53:48  |  Undefined variable: lines
+2020-08-31 18:53:48  |  Undefined variable: lines
+2020-08-31 18:53:48  |  Undefined variable: lines
+2020-08-31 18:53:48  |  Undefined variable: lines
+2020-08-31 18:53:48  |  Undefined variable: lines
+2020-08-31 19:05:30  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U, https://www.instagram.com/exe4u/, asdf4321, 2020-08-31 19:05:30, 2020-08-31 19:05:30))
+2020-08-31 19:05:40  |  SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `commercials` (`image_tag`, `title`, `link`, `text`, `updated_at`, `created_at`) values (EXE4U, EXE4U, https://www.instagram.com/exe4u/, asdf4321, 2020-08-31 19:05:40, 2020-08-31 19:05:40))
+2020-08-31 19:10:40  |  Undefined variable: lines
+2020-08-31 19:10:42  |  Undefined variable: lines
+2020-08-31 19:10:44  |  Undefined variable: lines
+2020-08-31 19:14:50  |  Undefined variable: commercials
+2020-08-31 19:27:02  |  Undefined variable: posts
+2020-09-01 08:08:59  |  Undefined variable: commercials
+2020-09-01 08:10:27  |  Undefined variable: commercials
+2020-09-01 10:14:43  |  Undefined variable: news

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -22,36 +23,39 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
+
     protected $redirectTo = '/admin';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
-        $this->middleware('guest')->except('logout','postLogin');
+        $this->middleware('guest')->except('logout', 'postLogin');
     }
 
     public function postLogin(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'email|required',
-            'password' => 'required|min:4'
-        ]);
-        if(Auth::user() == null) {
-            if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
+        try {
+            $this->validate($request, [
+                'email' => 'email|required',
+                'password' => 'required|min:4'
+            ]);
+            if (Auth::user() == null) {
+                if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
+                    return redirect("/admin");
+                }
+            } else {
                 return redirect("/admin");
             }
-        } else {
-            return redirect("/admin");
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            Log::error($message);
+            $text = file_get_contents(public_path('assets/logs/AllLogs.txt')) . "\n" . date('Y-m-d H:i:s') . '  |  ' . $message;
+            $file = fopen(public_path('assets/logs/AllLogs.txt'), "w");
+            fwrite($file, $text);
+            fclose($file);
+            return back()->withError($e->getMessage())->withInput();
         }
-        return redirect()->back();
     }
 }

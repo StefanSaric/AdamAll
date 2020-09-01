@@ -41,6 +41,19 @@
                     </ul>
                 </div>
             </div>
+            <br>
+            <br>
+            <h2 style="text-align:left;">Logovi</h2>
+            <div class="box-bordered">
+                <br>
+                <ol>
+                    <?php if(isset($lines))
+                    for($i = count($lines)-1; $i > count($lines)-6;$i--)
+                    {
+                    echo "<li> $lines[$i]</li>";
+                    } ?>
+                </ol>
+            </div>
         </div><!--end .section-body -->
     </section>
 

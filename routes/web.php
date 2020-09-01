@@ -11,11 +11,12 @@
 |
 */
 
-Auth::routes(['register' => false]);
+//Auth::routes(['register' => false]);
 
 Route::get('admin/login', function () {
     return view('login');
 });
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(array('middleware' => 'guest'), function()
 {
@@ -24,7 +25,7 @@ Route::group(array('middleware' => 'guest'), function()
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role'], function () {
-        Route::get('/', 'Admin\AdminController@index');
+        Route::resource('/', 'Admin\AdminController');
         Route::resource('/users', 'Admin\UsersController');
         Route::resource('/roles', 'Admin\RoleController');
         Route::resource('/users/edit', 'Admin\UsersController@edit');

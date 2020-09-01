@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Role;
@@ -16,98 +17,153 @@ class UsersController extends Controller{
 
     public function index()
     {
-        $users = User::with('roles')->get();//list of objects (params: id, name, email, password, remember_token, created_at, updated_at) with relation (roles:id, name)
-//        dd($users);
+        try {
+            $users = User::with('roles')->get();
+            return view('admin.users.allusers', ['active' => 'allUsers', 'users' => $users]);
 
-        return view('admin.users.allusers', ['active' => 'allUsers', 'users' => $users]);
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            Log::error($message);
+            $text = file_get_contents(public_path('assets/logs/AllLogs.txt')) . "\n" . date('Y-m-d H:i:s') . '  |  ' . $message;
+            $file = fopen(public_path('assets/logs/AllLogs.txt'), "w");
+            fwrite($file, $text);
+            fclose($file);
+            return back()->withError($e->getMessage())->withInput();
+        }
     }
 
-    /*--- Returns empty form for inputing new User ---*/
+
     public function create ()
     {
-        $roles = Role::all(); //list of objects (params: id, name)
+        try {
+            $roles = Role::all(); //list of objects (params: id, name)
+            return view('admin.users.create', ['active' => 'addUser', 'roles' => $roles]);
 
-        return view('admin.users.create', ['active' => 'addUser', 'roles' => $roles]);
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            Log::error($message);
+            $text = file_get_contents(public_path('assets/logs/AllLogs.txt')) . "\n" . date('Y-m-d H:i:s') . '  |  ' . $message;
+            $file = fopen(public_path('assets/logs/AllLogs.txt'), "w");
+            fwrite($file, $text);
+            fclose($file);
+            return back()->withError($e->getMessage())->withInput();
+        }
     }
 
-    /*--- Stores new User based on input data ($request) and redirects to User index ---*/
-    public function store(Request $request) //request inputs: user_id, name, licence, email, password, role_id(list)
+    public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'email' => ['required', 'unique:users'],
-            'password' => 'required'
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput($request->input());
-        }
-        //setting encription for password
-        $request->merge(array('password' => bcrypt($request->input('password'))));
-        $user = User::create($request->all());//single object (params: id, name, licence, email, password, remember_token, created_at, updated_at)
-        $roles = $request->get('role_id');
-        //adding to pivot table for roles
-        if($roles !== null){
-            foreach($roles as $role){
-                $user->roles()->attach($role);
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => ['required', 'unique:users'],
+                'password' => 'required'
+            ]);
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput($request->input());
             }
+            //setting encription for password
+            $request->merge(array('password' => bcrypt($request->input('password'))));
+            $user = User::create($request->all());
+            $roles = $request->get('role_id');
+            //adding to pivot table for roles
+            if ($roles !== null) {
+                foreach ($roles as $role) {
+                    $user->roles()->attach($role);
+                }
+            }
+            $user->save();
+
+            Session::flash('message', 'success_' . __('Official is added!'));
+            return redirect('admin/users');
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            Log::error($message);
+            $text = file_get_contents(public_path('assets/logs/AllLogs.txt')) . "\n" . date('Y-m-d H:i:s') . '  |  ' . $message;
+            $file = fopen(public_path('assets/logs/AllLogs.txt'), "w");
+            fwrite($file, $text);
+            fclose($file);
+            return back()->withError($e->getMessage())->withInput();
         }
-        $user->save();
-
-        Session::flash('message', 'success_'.__('Official is added!'));
-
-        return redirect('admin/users');
     }
 
     public function edit($id)
     {
-        $user = User::find($id); //single object (params: id, name, licence, email, password, remember_token, created_at, updated_at)
-        $roles = Role::all(); //list of objects (params: id, name)
-        $userRoles = $user->roles; //list of assigned objects through relation
+        try {
+            $user = User::find($id);
+            $roles = Role::all();
+            $userRoles = $user->roles;
 
-        return view ('admin.users.edit', ['active' => 'addUser', 'user' => $user, 'roles' => $roles, 'userroles' => $userRoles]);
+            return view('admin.users.edit', ['active' => 'addUser', 'user' => $user, 'roles' => $roles, 'userroles' => $userRoles]);
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            Log::error($message);
+            $text = file_get_contents(public_path('assets/logs/AllLogs.txt')) . "\n" . date('Y-m-d H:i:s') . '  |  ' . $message;
+            $file = fopen(public_path('assets/logs/AllLogs.txt'), "w");
+            fwrite($file, $text);
+            fclose($file);
+            return back()->withError($e->getMessage())->withInput();
+        }
     }
 
-    public function update(Request $request) //request inputs: user_id, name, email, password, role_id(list)
+    public function update(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'email' => ['required', 'unique:users,email,'.$request->user_id],
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput($request->input());
-        }
-        $id = $request->user_id;
-        $user = User::find($id);
-        $user->update($request->except(['password']));
-        //changing password
-        if(isset($request->password) && $request->password != ''){
-            $user->password = bcrypt($request->input('password'));
-            $user->save();
-        }
-        //adding new role
-        if(isset($request->role_id)){
-            $user->roles()->sync($request->role_id);
-        }
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => ['required', 'unique:users,email,' . $request->user_id],
+            ]);
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput($request->input());
+            }
+            $id = $request->user_id;
+            $user = User::find($id);
+            $user->update($request->except(['password']));
+            //changing password
+            if (isset($request->password) && $request->password != '') {
+                $user->password = bcrypt($request->input('password'));
+                $user->save();
+            }
+            //adding new role
+            if (isset($request->role_id)) {
+                $user->roles()->sync($request->role_id);
+            }
 
-        Session::flash('message', 'success_'.__('Official is edited!'));
+            Session::flash('message', 'success_' . __('Official is edited!'));
+            return redirect('admin/users');
 
-        return redirect('admin/users');
-
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            Log::error($message);
+            $text = file_get_contents(public_path('assets/logs/AllLogs.txt')) . "\n" . date('Y-m-d H:i:s') . '  |  ' . $message;
+            $file = fopen(public_path('assets/logs/AllLogs.txt'), "w");
+            fwrite($file, $text);
+            fclose($file);
+            return back()->withError($e->getMessage())->withInput();
+        }
     }
 
-    /*--- Deletes User (id in param) ---*/
+
     public function delete($id)
     {
-        $user = User::find($id); //single object (params: id, name, email, password, remember_token, created_at, updated_at)
-        $user->delete();
+        try {
+            $user = User::find($id);
+            $user->delete();
 
-        Session::flash('message', 'info_'.__('User is deleted!'));
+            Session::flash('message', 'info_' . __('User is deleted!'));
+            return redirect('admin/users');
 
-
-        return redirect('admin/users');
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            Log::error($message);
+            $text = file_get_contents(public_path('assets/logs/AllLogs.txt')) . "\n" . date('Y-m-d H:i:s') . '  |  ' . $message;
+            $file = fopen(public_path('assets/logs/AllLogs.txt'), "w");
+            fwrite($file, $text);
+            fclose($file);
+            return back()->withError($e->getMessage())->withInput();
+        }
     }
 }
